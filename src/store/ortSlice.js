@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: '',          // Имя пользователя
-  points: 0,         // Баллы ОРТ
+  user: '',          
+  points: 0,         
   isSpinning: false,
   status: 'applicant',
-  hasApplication: false, // Статус стандартной заявки
+  hasApplication: false, 
+  applicationData: null, // Добавили хранилище для данных заявки
 };
 
 const ortSlice = createSlice({
@@ -17,13 +18,18 @@ const ortSlice = createSlice({
       state.points = action.payload.points;
       state.status = 'applicant';
     },
-    // UPDATE: Обновление имени
     updateUserName: (state, action) => {
       state.user = action.payload;
     },
-    // CREATE/DELETE заявку:
-    setApplicationStatus: (state, action) => {
-      state.hasApplication = action.payload;
+    // Улучшенный CREATE: сохраняем данные формы
+    submitApplication: (state, action) => {
+      state.hasApplication = true;
+      state.applicationData = action.payload; // { faculty, phone, motivation }
+    },
+    // Улучшенный DELETE: очищаем данные
+    removeApplication: (state) => {
+      state.hasApplication = false;
+      state.applicationData = null;
     },
     startSpin: (state) => {
       if (state.points >= 10) {
@@ -40,5 +46,5 @@ const ortSlice = createSlice({
   },
 });
 
-export const { setUser, updateUserName, setApplicationStatus, startSpin, endSpin } = ortSlice.actions;
+export const { setUser, updateUserName, submitApplication, removeApplication, startSpin, endSpin } = ortSlice.actions;
 export default ortSlice.reducer;

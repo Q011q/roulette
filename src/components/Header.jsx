@@ -9,11 +9,16 @@ const Header = () => {
     return (
         <header style={styles.header}>
             <div style={styles.logo} onClick={() => navigate('/university')}>
-                🎓 ГУАУ
+                📜 ГУАУ
             </div>
             <div style={styles.userInfo}>
-                <span style={styles.points}>{points} ОРТ</span>
-                <button style={styles.profileBtn} onClick={() => navigate('/profile')}>
+                
+                <button 
+                    style={styles.profileBtn} 
+                    onClick={() => navigate('/profile')}
+                    onMouseOver={(e) => e.target.style.background = '#e7d9c5'}
+                    onMouseOut={(e) => e.target.style.background = 'transparent'}
+                >
                     👤 Профиль ({user})
                 </button>
             </div>
@@ -22,11 +27,25 @@ const Header = () => {
 };
 
 const styles = {
-    header: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px 30px', background: '#16213e', borderBottom: '2px solid #e94560', color: '#fff', fontFamily: 'Montserrat, sans-serif' },
-    logo: { fontSize: '1.5rem', fontWeight: 'bold', cursor: 'pointer', color: '#e94560' },
+    header: { 
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
+        padding: '15px 40px', background: '#f7efdf', borderBottom: '6px solid #cbb291', 
+        fontFamily: 'Montserrat, sans-serif', boxShadow: '0 10px 20px rgba(90, 70, 50, 0.1)' 
+    },
+    logo: { 
+        fontSize: '2rem', fontWeight: 'bold', cursor: 'pointer', color: '#b76b5a', 
+        fontFamily: 'Cormorant Garamond, serif' 
+    },
     userInfo: { display: 'flex', alignItems: 'center', gap: '20px' },
-    points: { color: '#ffd700', fontWeight: 'bold' },
-    profileBtn: { background: 'transparent', color: '#fff', border: '1px solid #e94560', padding: '8px 15px', borderRadius: '20px', cursor: 'pointer', transition: '0.2s' }
+    points: { 
+        color: '#a0522d', fontWeight: 'bold', background: '#f3eadb', 
+        padding: '8px 20px', borderRadius: '30px', border: '2px solid #dbb68c' 
+    },
+    profileBtn: { 
+        background: 'transparent', color: '#3e332b', border: '2px solid #c9a87c', 
+        padding: '10px 20px', borderRadius: '30px', cursor: 'pointer', 
+        transition: '0.2s ease', fontWeight: '600', fontFamily: 'Montserrat, sans-serif'
+    }
 };
 
 export default Header;
